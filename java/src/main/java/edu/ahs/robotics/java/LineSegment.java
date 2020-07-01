@@ -36,4 +36,19 @@ public class LineSegment {
         }
         return ptList;
     }
+
+    public Point interpolate(double dist) {
+        //workaround for a segment's length (not currently an internal method)
+        double length = A.distanceTo(B);
+        //will want to scale displacements by this coefficient
+        double scaleCoeff = dist / length;
+        //x- and y-intervals
+        double xInt = B.getX() - A.getX();
+        double yInt = B.getY() - A.getY();
+        //scale these up
+        double xDist = scaleCoeff * xInt;
+        double yDist = scaleCoeff * yInt;
+        //add them onto point A and send it back
+        return new Point(A.getX() + xDist, A.getY() + yDist);
+    }
 }

@@ -27,11 +27,11 @@ public class Point {
     }
 
     //other methods
+
     public double distanceTo(Point P) {
         double xDist = x - P.getX();
         double yDist = y - P.getY();
-        double dist = Math.sqrt(xDist*xDist + yDist*yDist);
-        return dist;
+        return Math.sqrt(xDist * xDist + yDist * yDist);
     }
 
     public double distanceToOrigin() {
@@ -50,6 +50,21 @@ public class Point {
             else {q = 4;}
         }
         return q;
+    } //this method has a test
+
+    public Point closestPoint(Point[] ptList) {
+        Point currClosest = ptList[0];
+        double currClosestDist = distanceTo(currClosest);
+
+        for (Point currPt : ptList) {
+            double currDist = distanceTo(currPt);
+            if (currDist < currClosestDist) {
+                currClosest = currPt;
+                currClosestDist = currDist;
+            }
+        }
+
+        return currClosest;
     }
 
     public Point midpointWith(Point P) {
